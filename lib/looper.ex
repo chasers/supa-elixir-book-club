@@ -9,7 +9,7 @@ defmodule LoadFestBookClub.Looper do
 
   @url "https://book-club.fly.dev/repos/7/requests/new"
   @tasks 10
-  @every 200
+  @every 500
 
   def start_link(args \\ []) do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
