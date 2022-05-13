@@ -24,7 +24,7 @@ defmodule LoadFestBookClub.Looper do
   @impl true
   def handle_info(:loop, state) do
     1..10
-    |> Task.async_stream(fn _n -> Client.post(@url) end, max_concurrency: 2)
+    |> Task.async_stream(fn _n -> Client.post(@url) end, max_concurrency: 1)
     |> Enum.to_list()
 
     loop()
