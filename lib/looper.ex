@@ -7,9 +7,8 @@ defmodule LoadFestBookClub.Looper do
   # @tasks Application.get_env(:load_fest_book_club, :looper)[:tasks]
   # @every Application.get_env(:load_fest_book_club, :looper)[:every]
 
-  @url "https://book-club.fly.dev/repos/7/requests/new"
-  @tasks 10
-  @every 500
+  @url "https://book-club.fly.dev/repos/8/requests/new"
+  @every 0
 
   def start_link(args \\ []) do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
@@ -24,7 +23,9 @@ defmodule LoadFestBookClub.Looper do
 
   @impl true
   def handle_info(:loop, state) do
-    Client.post_async(@tasks, @url)
+    1..100
+    |> Task.async_stream(fn _n -> Client.post(@url) end, max_concurrency: 10)
+    |> Enum.to_list()
 
     loop()
 
