@@ -7,7 +7,7 @@ defmodule LoadFestBookClub.Looper do
   # @tasks Application.get_env(:load_fest_book_club, :looper)[:tasks]
   # @every Application.get_env(:load_fest_book_club, :looper)[:every]
 
-  @url "https://book-club.fly.dev/repos/8/requests/new"
+  @url "https://book-club.fly.dev/repos/7/requests/new"
   @every 0
 
   def start_link(args \\ []) do
