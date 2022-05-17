@@ -8,6 +8,11 @@ defmodule LoadFestBookClub.Application do
   def start(_type, _args) do
     children = [
       {Task.Supervisor, name: LoadFestBookClub.TaskSupervisor},
+      {Finch,
+       name: LoadFestBookClub.BookClubPool,
+       pools: %{
+         :default => [size: 200]
+       }},
       LoadFestBookClub.Looper
     ]
 

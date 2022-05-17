@@ -16,6 +16,6 @@ defmodule LoadFestBookClub.Client do
   end
 
   def post(url) do
-    Req.post!(url, "", [])
+    Req.post!(url, "", finch: LoadFestBookClub.BookClubPool)
   end
 end
