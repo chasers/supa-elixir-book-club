@@ -4,8 +4,8 @@ defmodule LoadFestBookClub.Looper do
   alias LoadFestBookClub.Client
 
   @url Application.get_env(:load_fest_book_club, __MODULE__)[:url]
-  @max_concurrency 100
-  @stream_len 1_000
+  @max_concurrency 10
+  @stream_len 100
   @every 0
 
   def start_link(args \\ []) do
