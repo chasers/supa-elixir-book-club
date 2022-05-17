@@ -3,11 +3,10 @@ defmodule LoadFestBookClub.Looper do
 
   alias LoadFestBookClub.Client
 
-  # @url Application.get_env(:load_fest_book_club, :looper)[:url]
   # @tasks Application.get_env(:load_fest_book_club, :looper)[:tasks]
   # @every Application.get_env(:load_fest_book_club, :looper)[:every]
 
-  @url "https://book-club.fly.dev/repos/7/requests/new"
+  @url Application.get_env(:load_fest_book_club, __MODULE__)[:url]
   @every 0
 
   def start_link(args \\ []) do
