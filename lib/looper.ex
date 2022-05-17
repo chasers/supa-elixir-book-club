@@ -3,10 +3,9 @@ defmodule LoadFestBookClub.Looper do
 
   alias LoadFestBookClub.Client
 
-  # @tasks Application.get_env(:load_fest_book_club, :looper)[:tasks]
-  # @every Application.get_env(:load_fest_book_club, :looper)[:every]
-
   @url Application.get_env(:load_fest_book_club, __MODULE__)[:url]
+  @max_concurrency 10
+  @stream_len 100
   @every 0
 
   def start_link(args \\ []) do
@@ -22,8 +21,8 @@ defmodule LoadFestBookClub.Looper do
 
   @impl true
   def handle_info(:loop, state) do
-    1..10
-    |> Task.async_stream(fn _n -> Client.post(@url) end, max_concurrency: 1)
+    1..@stream_len
+    |> Task.async_stream(fn _n -> Client.post(@url) end, max_concurrency: @max_concurrency)
     |> Enum.to_list()
 
     loop()
