@@ -1,6 +1,6 @@
 import Config
 
-config :load_fest_book_club, :poller,
-  every: 1_000,
-  url: "https://book-club.fly.dev/repos/7/requests/new",
-  tasks: 10
+config :load_fest_book_club, LoadFestBookClub.Looper,
+  max_concurrency: String.to_integer(System.get_env("MAX_CONCURRENCY") || "1")
+  stream_len: String.to_integer(System.get_env("STREAM_LEN") || "1")
+  every: String.to_integer(System.get_env("EVERY") || "1000")

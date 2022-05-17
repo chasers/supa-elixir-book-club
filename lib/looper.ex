@@ -4,9 +4,9 @@ defmodule LoadFestBookClub.Looper do
   alias LoadFestBookClub.Client
 
   @url Application.get_env(:load_fest_book_club, __MODULE__)[:url]
-  @max_concurrency 1
-  @stream_len 1
-  @every 1_000
+  @max_concurrency Application.get_env(:load_fest_book_club, __MODULE__)[:max_concurrency]
+  @stream_len Application.get_env(:load_fest_book_club, __MODULE__)[:stream_len]
+  @every Application.get_env(:load_fest_book_club, __MODULE__)[:every]
 
   def start_link(args \\ []) do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
